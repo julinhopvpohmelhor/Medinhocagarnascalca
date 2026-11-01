@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050000">
+<title>Momo — Não olhe para trás</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,sans-serif}
+body{
+ min-height:100svh;display:grid;place-items:center;overflow:hidden;color:#eee;text-align:center;
+ background:radial-gradient(ellipse at center,#241010 0%,#090303 55%,#000 100%);
+}
+.intro{width:min(92vw,620px);padding:28px}
+h1{color:#c52b22;letter-spacing:.1em;text-shadow:0 0 20px #b00}
+p{color:#c9baba;line-height:1.6}
+button{
+ margin-top:22px;padding:16px 28px;border:1px solid #d33;border-radius:7px;
+ background:#8e0808;color:#fff;font-size:1.05rem;font-weight:800;cursor:pointer;
+ box-shadow:0 0 25px #a0000066
+}
+#scare{display:none;position:fixed;inset:0;z-index:5;place-items:center;background:#030000;overflow:hidden}
+#scare.show{display:grid;animation:flash .09s steps(2,end) infinite}
+.face{width:min(96vw,760px);height:min(91svh,850px);filter:drop-shadow(0 0 28px #b00000);animation:lunge .12s infinite alternate}
+.scream{position:absolute;bottom:4vh;left:0;right:0;color:#f11;font-size:clamp(27px,7vw,64px);font-weight:1000;letter-spacing:.13em;text-shadow:0 0 18px red}
+@keyframes flash{0%,100%{background:#050000}50%{background:#300000}}
+@keyframes lunge{from{transform:scale(.91) rotate(-1deg)}to{transform:scale(1.08) rotate(1deg)}}
+@media(prefers-reduced-motion:reduce){.face,#scare{animation-duration:.4s;animation-iteration-count:1}}
+</style>
+</head>
+<body>
+<main class="intro" id="intro">
+ <div style="font-size:76px">👁️</div>
+ <h1>MOMO ESTÁ TE OBSERVANDO</h1>
+ <p>Você recebeu uma mensagem.<br>Tem certeza de que quer abrir?</p>
+ <button id="start">ABRIR MENSAGEM</button>
+ <p style="font-size:.82rem;opacity:.65">O susto inclui som. Diminua o volume se preferir.</p>
+</main>
+
+<section id="scare" aria-label="Jumpscare da Momo">
+<svg class="face" viewBox="0 0 600 760" role="img" aria-label="Rosto assustador inspirado na lenda da Momo">
+ <defs>
+  <radialGradient id="skin" cx="50%" cy="40%" r="65%">
+   <stop offset="0" stop-color="#f0ded2"/><stop offset=".7" stop-color="#b99b91"/><stop offset="1" stop-color="#60413e"/>
+  </radialGradient>
+  <linearGradient id="hair" x2="1" y2="1"><stop stop-color="#080707"/><stop offset=".5" stop-color="#211515"/><stop offset="1" stop-color="#020202"/></linearGradient>
+  <radialGradient id="iris"><stop stop-color="#ffdfc0"/><stop offset=".25" stop-color="#9d1b16"/><stop offset="1" stop-color="#170303"/></radialGradient>
+ </defs>
+ <!-- Long dark hair framing the head -->
+ <path d="M105 230 Q35 75 160 35 Q300 -15 440 35 Q565 85 495 245
+          Q555 430 530 720 L435 680 L405 520 L195 520 L165 690 L65 740 Q90 470 105 230Z"
+       fill="url(#hair)" stroke="#050303" stroke-width="15"/>
+ <!-- Pale elongated face -->
+ <path d="M150 170 Q300 65 450 170 Q490 310 445 510 Q405 650 300 690
+          Q195 650 155 510 Q110 310 150 170Z" fill="url(#skin)" stroke="#21100f" stroke-width="10"/>
+ <!-- Brow shadows -->
+ <path d="M155 280 Q205 205 270 275 Q220 255 165 305Z M330 275 Q395 205 445 280 L435 305 Q380 255 330 275Z" fill="#2b1716"/>
+ <!-- Large dark eyes -->
+ <ellipse cx="215" cy="315" rx="57" ry="72" fill="#100707"/>
+ <ellipse cx="385" cy="315" rx="57" ry="72" fill="#100707"/>
+ <ellipse cx="215" cy="315" rx="35" ry="49" fill="url(#iris)"/>
+ <ellipse cx="385" cy="315" rx="35" ry="49" fill="url(#iris)"/>
+ <ellipse cx="215" cy="315" rx="12" ry="34" fill="#050202"/>
+ <ellipse cx="385" cy="315" rx="12" ry="34" fill="#050202"/>
+ <circle cx="201" cy="294" r="9" fill="#fff2e9"/><circle cx="371" cy="294" r="9" fill="#fff2e9"/>
+ <!-- Nose -->
+ <path d="M300 330 Q270 405 275 435 Q300 458 325 435 Q330 405 300 330Z" fill="#76534e"/>
+ <path d="M276 438 Q300 450 324 438" fill="none" stroke="#3c201e" stroke-width="8"/>
+ <!-- Unnaturally wide grin -->
+ <path d="M145 485 Q300 410 455 485 Q430 625 300 635 Q170 625 145 485Z" fill="#100303" stroke="#3b1716" stroke-width="13"/>
+ <path d="M160 490 Q300 450 440 490 L425 535 Q300 510 175 535Z" fill="#eee0d4"/>
+ <path d="M185 535 L215 540 L230 585 L250 540 L280 542 L300 592 L320 542 L350 540 L370 585 L385 540 L415 535"
+       fill="none" stroke="#fff0df" stroke-width="13" stroke-linejoin="round"/>
+ <path d="M175 565 Q300 665 425 565" fill="none" stroke="#7d0909" stroke-width="12"/>
+ <!-- Hair strands -->
+ <path d="M125 170 Q85 330 130 560 M475 170 Q515 330 470 560 M155 90 Q125 240 160 390 M445 90 Q475 240 440 390"
+       fill="none" stroke="#090606" stroke-width="18" stroke-linecap="round"/>
+</svg>
+<div class="scream">ELA TE VIU.</div>
+</section>
+
+<script>
+const start=document.getElementById('start');
+start.addEventListener('click',()=>{
+ document.getElementById('intro').style.display='none';
+ document.getElementById('scare').classList.add('show');
+ const AC=window.AudioContext||window.webkitAudioContext;
+ if(!AC)return;
+ const ctx=new AC(), now=ctx.currentTime;
+ const n=Math.floor(ctx.sampleRate*1.35), buf=ctx.createBuffer(1,n,ctx.sampleRate), d=buf.getChannelData(0);
+ for(let i=0;i<n;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/n,1.25);
+ const src=ctx.createBufferSource(), filter=ctx.createBiquadFilter(), gain=ctx.createGain();
+ src.buffer=buf; filter.type='lowpass'; filter.frequency.setValueAtTime(2600,now); filter.frequency.exponentialRampToValueAtTime(140,now+1.3);
+ gain.gain.setValueAtTime(.0001,now); gain.gain.exponentialRampToValueAtTime(.7,now+.025); gain.gain.exponentialRampToValueAtTime(.0001,now+1.35);
+ src.connect(filter).connect(gain).connect(ctx.destination); src.start(); src.stop(now+1.35);
+ const osc=ctx.createOscillator(), og=ctx.createGain(); osc.type='sawtooth';
+ osc.frequency.setValueAtTime(650,now); osc.frequency.exponentialRampToValueAtTime(55,now+1.2);
+ og.gain.setValueAtTime(.0001,now); og.gain.exponentialRampToValueAtTime(.2,now+.03); og.gain.exponentialRampToValueAtTime(.0001,now+1.2);
+ osc.connect(og).connect(ctx.destination); osc.start(); osc.stop(now+1.2);
+ setTimeout(()=>ctx.close(),1600);
+});
+</script>
+</body>
+</html>
